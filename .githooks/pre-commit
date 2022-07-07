@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ports=( 8001, 9002)
 
