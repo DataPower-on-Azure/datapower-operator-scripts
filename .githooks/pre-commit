@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ports=8001 9002
+
 zipfiles=`git diff HEAD --name-only | grep -E '.zip' | sed -e 's/\.zip$//'`
 
 for file in $zipfiles; do
@@ -11,7 +13,7 @@ for file in $zipfiles; do
     echo "extracting resources from ${file}.zip"
     ./migrate-backup.sh $file.zip
     ./migrate-backup-dps.sh $file > ./$file/$file-dps.yaml
-    ./migrate-backup-service.sh $file 8001 8002 > ./$file/$file-service.yaml
+    ./migrate-backup-service.sh $file $ports > ./$file/$file-service.yaml
     ./migrate-backup-route.sh $file 8001 8002 > ./$file/$file-route.yaml
     git add $file
   else
