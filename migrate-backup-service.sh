@@ -6,10 +6,12 @@ PORTS=$@
 
 PORTLIST=$(
   for PORT in {$PORTS}; do
-    echo    - name: $NAME-$PORT;
-    echo      protocol: TCP;
-    echo      port: $PORT;
-    echo      targetPort: $PORT;
+    if [[ $PORT  =~ ^[+-]?[0-9]+\.$ ]]; then
+      echo    - name: $NAME-$PORT;
+      echo      protocol: TCP;
+      echo      port: $PORT;
+      echo      targetPort: $PORT;
+    fi
   done;
 )
 
