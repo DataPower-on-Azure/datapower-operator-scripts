@@ -4,13 +4,14 @@
 NAME=$1
 PORTS=$@
 
+SPACER='    '
 PORTLIST=$(
   for PORT in {$PORTS}; do
     if [[ $PORT  =~ ^[0-9]+$ ]]; then
-      echo    - name: $NAME-$PORT;
-      echo      protocol: TCP;
-      echo      port: $PORT;
-      echo      targetPort: $PORT;
+      echo "   - name: $NAME-$PORT";
+      echo "     protocol: TCP";
+      echo "     port: $PORT";
+      echo "     targetPort: $PORT";
     fi
   done;
 )
