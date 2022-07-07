@@ -6,10 +6,10 @@ PORTS=$@
 
 PORTLIST=$(
   for PORT in {$PORTS}; do
-    if [[ "$PORT" == "$NAME" ]]; then
-      :
-    else
+    if [[ $PORT  =~ ^[0-9]+$ ]]; then
       echo "    targetPort: $NAME-$PORT";
+    else
+      echo $PORT
     fi
   done;
 )
