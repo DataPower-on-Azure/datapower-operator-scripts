@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #define parameters which are passed in.
-NAME=$1
+NAME=$1; shift
 PORTS=$@
 
 PORTLIST=$(
