@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #define parameters which are passed in.
 NAME=$1
@@ -6,7 +6,7 @@ PORTS=$@
 
 PORTLIST=$(
   for PORT in {$PORTS}; do
-    if [[ "x$PORT" = "x$NAME" ]]; then
+    if [[ $PORT =~ ^-?[0-9]+$ ]]; then
       echo "    - name: $NAME-$PORT";
       echo "      protocol: TCP";
       echo "      port: $PORT";
