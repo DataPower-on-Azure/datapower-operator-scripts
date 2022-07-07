@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "370"
+  name: validation-flow-route
+  namespace: validation-flow-migration
+spec:
+  to:
+    kind: Service
+    name: validation-flow-service
+    weight: 100
+  port:
+x{validation-flow xvalidation-flow
+    targetPort: validation-flow-8001
+x8002} xvalidation-flow
