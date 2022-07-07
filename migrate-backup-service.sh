@@ -2,7 +2,9 @@
 
 #define parameters which are passed in.
 NAME=$1
-PORTS=${@: 1}
+PORTS=$@
+
+echo $PORTS
 
 #define the template.
 cat  << EOF
