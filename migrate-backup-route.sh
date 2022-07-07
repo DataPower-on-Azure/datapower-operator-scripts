@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #define parameters which are passed in.
 NAME=$1
@@ -6,7 +6,7 @@ PORTS=$@
 
 PORTLIST=$(
   for PORT in {$PORTS}; do
-    if [[ $PORT =~ ^-?[0-9]+$ ]]; then
+    if [[ $PORT -eq $PORT 2> /dev/null ]]; then
       echo "    targetPort: $NAME-$PORT";
     else
       echo "x$PORT" "x$NAME"
