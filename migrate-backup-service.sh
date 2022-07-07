@@ -6,7 +6,9 @@ PORTS=$@
 
 PORTLIST=$(
   for PORT in {$PORTS}; do
-    if [[ $PORT != $NAME ]]; then
+    if [[ "$PORT" == "$NAME" ]]; then
+      :
+    else
       echo "    - name: $NAME-$PORT";
       echo "      protocol: TCP";
       echo "      port: $PORT";
