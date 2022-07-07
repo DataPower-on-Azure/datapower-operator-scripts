@@ -4,6 +4,17 @@
 NAME=$1
 PORTS=$@
 
+PORTLIST=$(
+  for PORT in "$PORTS"; do
+    echo    - name: $NAME-$PORT;
+    echo      protocol: TCP;
+    echo      port: $PORT;
+    echo      targetPort: $PORT;
+  done;
+)
+
+$PORTLIST
+
 #define the template.
 cat  << EOF
 kind: Service
@@ -17,11 +28,5 @@ spec:
   selector:
     app.kubernetes.io/instance: $NAME-migration-$NAME-instance
   ports:
-$(
-  for PORT in "$PORTS"; do
-    echo    - name: $NAME-$PORT
-    echo      protocol: TCP
-    echo      port: $PORT
-    echo      targetPort: $PORT
-)
+$PORTLIST
 EOF

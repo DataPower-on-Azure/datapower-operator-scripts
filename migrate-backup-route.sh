@@ -4,7 +4,13 @@
 NAME=$1
 PORTS=$@
 
-echo $PORTS
+PORTLIST=$(
+  for PORT in "$PORTS"; do
+    echo    targetPort: $NAME-$PORT;
+  done;
+)
+
+$PORTLIST
 
 #define the template.
 cat  << EOF
@@ -21,8 +27,5 @@ spec:
     name: $NAME-service
     weight: 100
   port:
-$(
-  for PORT in "$PORTS"; do
-    echo    targetPort: $NAME-$PORT
-)
+$PORTLIST
 EOF
