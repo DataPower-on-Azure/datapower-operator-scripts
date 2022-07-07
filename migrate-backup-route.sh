@@ -2,7 +2,7 @@
 
 #define parameters which are passed in.
 NAME=$1
-PORTS=$2
+PORT=$2
 
 #define the template.
 cat  << EOF
