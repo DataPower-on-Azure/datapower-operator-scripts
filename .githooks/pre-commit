@@ -1,6 +1,6 @@
 #!/bin/bash
 
-portarr=(8001 9002)
+declare -a portarr=("8001" "9002")
 
 zipfiles=`git diff HEAD --name-only | grep -E '.zip' | sed -e 's/\.zip$//'`
 
@@ -14,8 +14,8 @@ for file in $zipfiles; do
     ./migrate-backup.sh $file.zip
     ./migrate-backup-dps.sh $file > ./$file/$file-output/$file-dps.yaml
     ./migrate-backup-service.sh $file "${portarr[@]}" > ./$file/$file-output/$file-service.yaml
-    for port in {$portarr}; do
-      ./migrate-backup-route.sh $file $port > ./$file/$file-output/$file-$port-route.yaml
+    for port in "${arr[@]}"; do
+      ./migrate-backup-route.sh $file "$port" > ./$file/$file-output/$file-"$port"-route.yaml
     done;
     sed -i '' 's/[{}]//g' ./$file/$file-output/$file-service.yaml
     git add $file
