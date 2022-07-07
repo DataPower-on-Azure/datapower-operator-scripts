@@ -2,9 +2,9 @@
 
 #define parameters which are passed in.
 NAME=$1
-PORTS=${@: 0}
+PORTS=$@
 
-echo PORTS
+echo $PORTS
 
 #define the template.
 cat  << EOF
@@ -22,7 +22,7 @@ spec:
     weight: 100
   port:
 $(
-  for PORT in {$PORTS}; do
-    echo    targetPort: $NAME-mpgw
+  for PORT in "$PORTS"; do
+    echo    targetPort: $NAME-$PORT
 )
 EOF
