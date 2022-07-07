@@ -5,12 +5,10 @@ NAME=$1
 PORTS=$@
 
 PORTLIST=$(
-  for PORT in "$PORTS"; do
+  for PORT in {$PORTS}; do
     echo    targetPort: $NAME-$PORT;
   done;
 )
-
-$PORTLIST
 
 #define the template.
 cat  << EOF
