@@ -1,14 +1,8 @@
 #!/bin/bash
 
 #define parameters which are passed in.
-NAME=$1; shift
-PORTS=$@
-
-PORTLIST=$(
-  for PORT in {$PORTS}; do
-    echo "    targetPort: $NAME-$PORT";
-  done;
-)
+NAME=$1
+PORTS=$2
 
 #define the template.
 cat  << EOF
@@ -17,7 +11,7 @@ apiVersion: route.openshift.io/v1
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "370"
-  name: $NAME-route
+  name: $NAME-$PORT-route
   namespace: $NAME-migration
 spec:
   to:
@@ -25,5 +19,5 @@ spec:
     name: $NAME-service
     weight: 100
   port:
-$PORTLIST
+    targetPort: $NAME-$PORT
 EOF
