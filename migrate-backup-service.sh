@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #define parameters which are passed in.
 NAME=$1
